@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="css/nav.css">
+<script type="text/javascript" src="./js/jquery.color.js"></script>
+<script>
+	$(document).ready(function(){
+		if($(window).width() <= 768){
+			phoneUI();
+		}
+		else{
+			computerUI();
+		}
+		$(window).resize(function(){
+			if($(window).width() <= 768){
+				phoneUI();
+			}else {
+				computerUI();
+			}
+		});
+	});
+	function phoneUI(){
+	}
+	function computerUI(){
+	}
+
+	$("#navi-panel").click(function(){
+		$("#navi-panel>input").focus();
+	});
+ 	
+	var navHasFocus = false;
+	var isAnimating = false;
+
+	function naviFocusEvent(hasFocus){
+		navHasFocus = hasFocus;
+		if(hasFocus){
+			$("#navi-panel").animate({backgroundColor: /*$navi-point-color*/"#ffffff"}, 150 );
+			$("#navi-panel>input").animate({backgroundColor: /*$navi-point-color*/"#ffffff"}, 150);
+			$("#navi-panel>img").show(150);
+			$("#navi-panel>input").css('text-align', 'left');
+		} else {
+			$("#navi-panel").stop(true, false);
+			$("#navi-panel>input").stop(true, false);
+			
+			$('#navi-panel').css('background-color', /*$navi-sub-color*/'#4a73c9');
+			$('#navi-panel>input').css('background-color', /*$navi-sub-color*/'#4a73c9');
+			$("#navi-panel>img").hide();
+			$("#navi-panel>input").css('text-align', 'center');	
+		}
+	}
+
+</script>
+<nav id="navi" style="text-align:center">
+	<form style="margin:0 auto; padding:0; display:inline;">
+		<div id="navi-panel"class="panel">
+			<input onfocus="naviFocusEvent(true)" onblur="naviFocusEvent(false)" placeholder="Click for search"></input>
+  			<img src="resource/navi-search-img.png"/>
+		</div>
+	</form>
+	<div id="navi-login" class="btn btn-default nav-btn"style="display:inline-block; float:right">
+		Login
+	</div>
+</nav>
